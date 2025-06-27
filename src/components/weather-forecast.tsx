@@ -1,12 +1,9 @@
-import type { ForecastData, WeatherData } from '@/api/types'
+import type { ForecastData } from '@/api/types'
 import { format } from 'date-fns';
 
 import {
     Card,
-    CardAction,
     CardContent,
-    CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"

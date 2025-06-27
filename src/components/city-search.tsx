@@ -1,5 +1,4 @@
 import {
-    Command,
     CommandDialog,
     CommandEmpty,
     CommandGroup,
@@ -7,20 +6,21 @@ import {
     CommandItem,
     CommandList,
     CommandSeparator,
-    CommandShortcut,
 } from "@/components/ui/command"
 import { Button } from "./ui/button"
 import { useState } from "react";
-import { Clock, Loader2, Search, XCircle } from "lucide-react";
-import { useLocationSearch } from "@/hooks/use-weather";
+import { Clock, Loader2, Search, Star, XCircle } from "lucide-react";
+import { useLocationSearch } from "@/hooks/use-weather.ts";
 import { useNavigate } from "react-router-dom";
-import { useSearchHistory } from "@/hooks/use-search-history";
-import { format, formatDate } from "date-fns";
+import { useSearchHistory } from "@/hooks/use-search-history.ts";
+import { format } from "date-fns";
+import { useFavorite } from "@/hooks/use-favorite";
 
 
 const CitySearch = () => {
     const [open, setOpen] = useState(false);
     const [query, setQuery] = useState("");
+    const {favorites} = useFavorite()
     const navigate = useNavigate();
 
     const { data: locations, isLoading } = useLocationSearch(query);
@@ -53,11 +53,37 @@ const CitySearch = () => {
                     value={query}
                     onValueChange={setQuery}
                 />
-                <CommandList>
-                    {query.length > 2 && !isLoading && <CommandEmpty>No city found.</CommandEmpty>}
-                    {/* <CommandGroup heading="Favorites">
-                        <CommandItem>Calendar</CommandItem>
-                    </CommandGroup> */}
+            <CommandList>
+            {query.length > 2 && !isLoading && (
+              <CommandEmpty>No cities found.</CommandEmpty>
+            )}
+
+            {/* Favorites Section */}
+            {favorites.length > 0 && (
+              <CommandGroup heading="Favorites">
+                {favorites.map((city: any) => (
+                  <CommandItem
+                    key={city.id}
+                    value={`${city.lat}|${city.lon}|${city.name}|${city.country}`}
+                    onSelect={handleSelect}
+                  >
+                    <Star className="mr-2 h-4 w-4 text-yellow-500" />
+                    <span>{city.name}</span>
+                    {city.state && (
+                      <span className="text-sm text-muted-foreground">
+                        , {city.state}
+                      </span>
+                    )}
+                    <span className="text-sm text-muted-foreground">
+                      , {city.country}
+                    </span>
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            )}
+                      
+                    
+                     
                     {history.length > 0 && (
                         <>
                             <CommandSeparator />

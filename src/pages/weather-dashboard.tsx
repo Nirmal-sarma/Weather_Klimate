@@ -1,13 +1,13 @@
-import type { Coordinates } from "@/api/types";
 import CurrentWeather from "@/components/current-weather";
+import { FavoriteCities } from "@/components/favorite-cities";
 import HourlyTemparature from "@/components/hourly-temparature";
 import WeatherSkeleton from "@/components/loading-skeleton";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button"
 import WeatherDetails from "@/components/weather-details";
 import WeatherForecast from "@/components/weather-forecast";
-import { useGeolocation } from "@/hooks/use-geolocation"
-import { useForecastQuery, useReverseGeocodeQuery, useWeatherQuery } from "@/hooks/use-weather";
+import { useGeolocation } from "@/hooks/use-geolocation.tsx"
+import { useForecastQuery, useReverseGeocodeQuery, useWeatherQuery } from "@/hooks/use-weather.ts";
 import { AlertTriangle, MapPin, RefreshCw } from "lucide-react"
 
 const WhetherDashboard = () => {
@@ -85,6 +85,7 @@ const WhetherDashboard = () => {
 
   return (
     <div className="space-y-4">
+      <FavoriteCities/>
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold tracking-tight">My Location</h1>
         <Button variant={'outline'}

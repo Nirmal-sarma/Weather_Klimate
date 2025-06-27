@@ -3,10 +3,7 @@ import { format } from 'date-fns';
 import { Compass, Gauge, Sunrise, Sunset } from 'lucide-react';
 import {
     Card,
-    CardAction,
     CardContent,
-    CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"

@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useLocalStorage } from "./use-local-storage";
+import { useLocalStorage } from "./use-local-storage.ts";
 
 interface FavoriteCity {
     id: string;
