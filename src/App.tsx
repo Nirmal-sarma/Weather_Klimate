@@ -6,7 +6,7 @@ import WhetherDashboard from './pages/weather-dashboard'
 import Citypages from './pages/city-pages'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import type { Toaster } from 'sonner'
+import { Toaster } from 'sonner'
 
 const queryClient = new QueryClient({
   defaultOptions: {
