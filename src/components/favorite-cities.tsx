@@ -5,7 +5,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { X, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useFavorite } from "@/hooks/use-favorite";
-import { toast } from "sonner";
+import type { toast } from "sonner";
 
 interface FavoriteCityTabletProps {
   id: string;
